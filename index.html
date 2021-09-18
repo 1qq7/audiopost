@@ -1,13 +1,13 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
     <head>
-        <title>Snowboy Personal Wake Word</title>
+        <title>Wake Word</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Record your own snowboy personal wake word">
+        <meta name="description" content="Recorder and Post">
         <meta name="author" content="Michael Hansen (synesthesiam)">
 
         <link rel="icon" href="img/favico.png">
@@ -21,18 +21,18 @@
         <form id="form" method="POST" onsubmit="submitAudio()">
             <div class="container-fluid mt-3 mb-3">
                 <div class="row-fluid">
-                    <h1>Snowboy Personal Wake Word Recorder</h1>
+                    <h1>Wake Word Recorder</h1>
                 </div>
                 <div class="row-fluid">
                     <p>
-                        Record 3 wake word examples and submit them to generate a <tt>.pmdl</tt> file.
+                        Hi, 朋友，请帮助我们录制几个音频，这不会耽误你太多的时间，谢谢。
                     </p>
                     <ol>
-                        <li>Enable microphone (required for Chrome)</li>
-                        <li>Click Record and wait until ready</li>
-                        <li>Speak your wake word and <strong>wait for end</strong></li>
-                        <li>Repeat until you have 3 examples</li>
-                        <li>Enter a model name, submit audio, and click "Save Model" button</li>
+                        <li>点击 <tt>Enable microphone</tt> 打开麦克风使用权限</li>
+                        <li>点击 <tt>Record</tt> 准备录制</li>
+                        <li>说出唤醒词 <strong>嗨，小君</strong></li>
+                        <li>可以离麦克风不同的距离，喊出不同的音量，多录制几个，不要害羞</li>
+                        <li>点击 <tt>Submit</tt> 提交给我们</li>
                     </ol>
                 </div>
                 <div class="row-fluid">
@@ -53,7 +53,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="form-group mt-3">
+                <!-- <div class="form-group mt-3">
                     <div class="form-row">
                         <div class="col-auto">
                             <label for="modelName" class="form-label">Model Name:</label>
@@ -62,7 +62,7 @@
                             <input type="text" class="form-control" name="modelName" id="modelName" placeholder="Model name">
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="control-group mt-5">
                     <div class="controls row">
@@ -225,20 +225,20 @@
              event.preventDefault();
 
              // Ensure model name is set
-             const modelName = q('#modelName').value || '';
-             if (modelName.length == 0) {
-                 alert('Model name is required');
-                 return;
-             }
+            //  const modelName = q('#modelName').value || '';
+            //  if (modelName.length == 0) {
+            //      alert('Model name is required');
+            //      return;
+            //  }
 
              // Check for at least 3 examples
              if (Object.keys(blobs).length < 1) {
-                 alert('Need at least 3 examples');
+                 alert('Need at least 1 examples');
                  return;
              }
 
              const formData = new FormData(q('#form'));
-             const formPage = 'http://127.0.0.1:5555';
+             const formPage = 'http://39.103.226.0:5555/audios';
 
              setAlert('Submitting data...', 'alert-warning');
 
@@ -253,7 +253,7 @@
                  method: 'POST',
                  body: formData
              })
-             setAlert('Ok, Thanks.', 'alert-success');
+             
          }
 
          document.addEventListener('DOMContentLoaded', function() {
