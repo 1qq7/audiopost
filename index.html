@@ -237,8 +237,6 @@
              }
 
              const formData = new FormData(q('#form'));
-             const formPage = 'http://39.103.226.0:5555/audios';
-
              
              // Attach each audio blob as a file
              Object.keys(blobs).forEach(function(k) {
@@ -247,13 +245,6 @@
 
              });
 
-            //  formData.set('format', audioFormat);
-
-            //  let response = fetch(formPage, {
-            //      method: 'POST',
-            //      body: formData
-            //  })
-
             var xhr=new XMLHttpRequest();
             xhr.open("POST","http://39.103.226.0:5555/audios");
 
@@ -261,15 +252,13 @@
                 if(xhr.readyState==4){
                     if (xhr.status == 200){
                         setAlert("上传成功", 'alert-success');
-
+                    } else {
+                        setAlert("上传失败", 'alert-warning');
                     }
-                } else {
-                    setAlert("上传失败", 'alert-warning');
-                }
+                } 
             }
             xhr.send(formData);
-            //  setAlert('上传成功，感谢', 'alert-success');
-             q('#submit').disabled = true;
+            q('#submit').disabled = true;
          }
 
          document.addEventListener('DOMContentLoaded', function() {
