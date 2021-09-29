@@ -248,12 +248,22 @@
 
              });
 
-             formData.set('format', audioFormat);
+            //  formData.set('format', audioFormat);
 
-             let response = fetch(formPage, {
-                 method: 'POST',
-                 body: formData
-             })
+            //  let response = fetch(formPage, {
+            //      method: 'POST',
+            //      body: formData
+            //  })
+
+            var xhr=new XMLHttpRequest();
+            xhr.open("POST","http://39.103.226.0:5555/audios");
+            xhr.onreadystatechange=function(){
+                // if(xhr.readyState==4){
+                //     alert(xhr.status==200?"上传成功":"测试请先打开浏览器控制台，然后重新录音，在network选项卡里面就能看到上传请求数据和格式了");
+                // }
+            }
+            xhr.send(formData);
+
             //  setAlert('上传成功，感谢', 'alert-success');
              q('#submit').disabled = true;
          }
