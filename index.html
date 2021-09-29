@@ -25,13 +25,14 @@
                 <div class="row-fluid">
                     <p>
                         Hi, 朋友，请帮助我们录制几个音频，这不会耽误你太多的时间，谢谢。
-                    </p>
-                    <ol>
+                
                         <li>点击 <tt>Enable microphone</tt> 打开麦克风使用权限</li>
-                        <li>点击 <tt>Record</tt> 后有2秒的准备时间，之后将录制2.5秒的音频。红色停止，黄色准备，绿色录制。</li>
+                        <li>点击 <tt>Record</tt> 后有2秒的准备时间，之后将录制2.5秒的音频。</li>
+                        <li>红灯停，绿灯行，黄灯亮了等一等</li>
                         <li>说出唤醒词 <strong>嗨，小君</strong></li>
-                        <li>可以离麦克风不同的距离，喊出不同的音量，多录制几个（3-5），不要害羞</li>
+                        <li>可以离麦克风不同的距离，喊出不同的音量，多录制几个（5-10），不要害羞</li>
                         <li>点击 <tt>提交</tt> 之前试听一下，如果录制的不好，可以删除重新录制</li>
+                        <li> </strong>目前仅支持安卓手机的部分浏览器</strong></li>
                     </ol>
                 </div>
                 <div class="row-fluid">
@@ -169,8 +170,8 @@
 
              // Convert to blob and keep with timestamp
              const blob = new Blob(chunks, { 'type' : 'audio/webm' });
-             const timestamp = Date.now();
-             const blobId = 'blob_' + timestamp;
+             const timestamp = Date.now().format("yyyyMMddhhmmss");
+             const blobId = 'xiaojun_' + timestamp;
              blobs[blobId] = blob;
 
              // Create new listen item and add audio
@@ -216,7 +217,7 @@
              q('#record').disabled = false;
              q('#submit').disabled = false;
 
-             setAlert('Done recording', 'alert-success');
+             setAlert('录制完成', 'alert-success');
          }
 
          async function submitAudio() {
@@ -255,7 +256,7 @@
                     } else {
                         setAlert("上传失败", 'alert-danger');
                     }
-                } 
+                }
             }
             xhr.send(formData);
             q('#submit').disabled = true;
