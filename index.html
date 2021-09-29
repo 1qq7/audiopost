@@ -254,6 +254,7 @@
                         setAlert("上传成功", 'alert-success');
                     } else {
                         setAlert(xhr.status, 'alert-warning');
+                        setAlert(xhr.responseText, 'alert-warning');
                     }
                 } 
             }
