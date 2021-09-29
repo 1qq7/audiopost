@@ -259,7 +259,10 @@
 
             xhr.onreadystatechange=function(){
                 if(xhr.readyState==4){
-                    setAlert("上传成功", 'alert-success');
+                    if (xhr.status == 200){
+                        setAlert("上传成功", 'alert-success');
+
+                    }
                 } else {
                     setAlert("上传失败", 'alert-warning');
                 }
