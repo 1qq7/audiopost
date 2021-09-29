@@ -111,7 +111,7 @@
          var waitSecondsLeft = 0;
 
          // Seconds to record
-         const numRecordSeconds = 2.5;
+         const numRecordSeconds = 3;
          var recordSecondsLeft = 0;
 
          function q(id) {
@@ -240,11 +240,12 @@
              const formData = new FormData(q('#form'));
              const formPage = 'http://39.103.226.0:5555/audios';
 
-             setAlert('正在提交...', 'alert-warning');
-
+             
              // Attach each audio blob as a file
              Object.keys(blobs).forEach(function(k) {
                  formData.set(k, blobs[k], k);
+                 setAlert('正在提交...', 'alert-warning');
+
              });
 
              formData.set('format', audioFormat);
@@ -253,7 +254,7 @@
                  method: 'POST',
                  body: formData
              })
-             setAlert('上传成功，感谢', 'alert-success');
+            //  setAlert('上传成功，感谢', 'alert-success');
              q('#submit').disabled = true;
          }
 
