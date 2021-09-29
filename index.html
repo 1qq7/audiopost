@@ -241,7 +241,7 @@
              // Attach each audio blob as a file
              Object.keys(blobs).forEach(function(k) {
                  formData.set(k, blobs[k], k);
-                 setAlert('正在提交...', 'alert-warning');
+                 setAlert('正在提交...', 'alert-info');
 
              });
 
@@ -253,8 +253,7 @@
                     if (xhr.status == 200){
                         setAlert("上传成功", 'alert-success');
                     } else {
-                        setAlert(xhr.status, 'alert-warning');
-                        setAlert(xhr.responseText, 'alert-warning');
+                        setAlert("上传失败", 'alert-danger');
                     }
                 } 
             }
