@@ -256,8 +256,7 @@
             //  })
 
             var xhr=new XMLHttpRequest();
-            xhr.open("POST","http://39.103.226.0:5555/audios");
-            xhr.send(formData);
+            xhr.open("POST","http://39.103.226.0:5555");
 
             xhr.onreadystatechange=function(){
                 if(xhr.readyState==4){
@@ -266,7 +265,7 @@
                     setAlert("上传失败", 'alert-warning');
                 }
             }
-
+            xhr.send(formData);
             //  setAlert('上传成功，感谢', 'alert-success');
              q('#submit').disabled = true;
          }
