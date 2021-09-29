@@ -170,7 +170,7 @@
 
              // Convert to blob and keep with timestamp
              const blob = new Blob(chunks, { 'type' : 'audio/webm' });
-             const timestamp = Date.now().format("yyyyMMddhhmmss");
+             const timestamp = Date.format("yyyyMMddhhmmss");
              const blobId = 'xiaojun_' + timestamp;
              blobs[blobId] = blob;
 
