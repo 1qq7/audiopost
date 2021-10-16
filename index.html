@@ -53,16 +53,16 @@
                         </button>
                     </div>
                 </div>
-                <!-- <div class="form-group mt-3">
+                <div class="form-group mt-3">
                     <div class="form-row">
                         <div class="col-auto">
-                            <label for="modelName" class="form-label">Model Name:</label>
+                            <label for="speekerName" class="form-label">输入你的名字（拼音或英文）</label>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="modelName" id="modelName" placeholder="Model name">
+                            <input type="text" class="form-control" name="speekerName" id="speekerName" placeholder="Speeker name">
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <div class="control-group mt-5">
                     <div class="controls row">
@@ -113,6 +113,9 @@
          // Seconds to record
          const numRecordSeconds = 2.5;
          var recordSecondsLeft = 0;
+
+         // speech command
+         const speech_cmd = "xiaojun"
 
          function q(id) {
              return document.querySelector(id);
@@ -171,7 +174,7 @@
              // Convert to blob and keep with timestamp
              const blob = new Blob(chunks, { 'type' : 'audio/webm' });
              const timestamp = Date.now();
-             const blobId = 'xiaojun_' + timestamp;
+             const blobId = timestamp;
              blobs[blobId] = blob;
 
              // Create new listen item and add audio
@@ -225,15 +228,15 @@
              event.preventDefault();
 
              // Ensure model name is set
-            //  const modelName = q('#modelName').value || '';
-            //  if (modelName.length == 0) {
-            //      alert('Model name is required');
-            //      return;
-            //  }
+             const speekerName = q('#speekerName').value || '';
+             if (speekerName.length == 0) {
+                 alert('必须输入一个名字');
+                 return;
+             }
 
              // Check for at least 3 examples
              if (Object.keys(blobs).length < 1) {
-                 alert('Need at least 1 examples');
+                 alert('至少录入一个样本');
                  return;
              }
 
@@ -241,9 +244,9 @@
              
              // Attach each audio blob as a file
              Object.keys(blobs).forEach(function(k) {
-                 formData.set(k, blobs[k], k);
-                 setAlert('正在提交...', 'alert-info');
-
+                 const filename = speech_cmd + '_' + speekerName + '_' + k;
+                 formData.set(filename, blobs[k], filename);
+                 setAlert(filename, 'alert-info');
              });
 
             var xhr=new XMLHttpRequest();
